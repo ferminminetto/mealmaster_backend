@@ -1,0 +1,16 @@
+Django==4
+django-cors-headers
+django-extensions
+django-pdb
+django-redis
+djangorestframework
+djangorestframework-simplejwt
+psycopg2
+PyJWT
+pytz
+redis
+six
+sqlparse
+coverage
+googletrans==3.1.0a0
+requests

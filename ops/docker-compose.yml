@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  backend:
+    build: ..
+    env_file: ./env
+    environment:
+      - MODE=web
+    volumes:
+      - ../:/food_planner
+    ports:
+      - 8005:8000
+      - 8004:8004 # Only for debugging.
+    depends_on:
+      - db
+      - redis
+
+  # frontend:
+  #   image: node:latest
+  #   command: sh /app/frontend_start.sh
+  #   volumes:
+  #     - ../../agile-currency-exchange-frontend:/app
+  #   ports:
+  #     - 3001:3000
+  #   depends_on:
+  #     - backend
+
+  db:
+    image: postgres:latest
+    env_file: ./env
+    volumes:
+      - "db-data:/var/lib/postgresql/data"  # Mount volume for persistent data
+
+  redis:
+    restart: always
+    image: redis:4.0-alpine
+
+volumes:
+  db-data: {}
